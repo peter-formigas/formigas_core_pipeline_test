@@ -41,7 +41,8 @@ jobs:
             echo "flavor=development" >> $GITHUB_OUTPUT
           fi
 
-  build_app:
+  build:
+    name: Build ${{ matrix.platform }} ${{ needs.determine-flavor.outputs.flavor }}
     needs: determine-flavor
     strategy:
       matrix:

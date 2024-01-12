@@ -4,7 +4,7 @@ description: Builds the app for the specified platform and flavor
 inputs:
   platform:
     required: true
-    description: "Platform to build (android or ios))"
+    description: "Platform to build (android or ios)"
   flavor:
     required: true
     description: "Build flavor"
