@@ -79,14 +79,15 @@ jobs:
       - name: Build runner
         run: dart run build_runner build --delete-conflicting-outputs
       - name: Run tests
-        run: flutter test --coverage --file-reporter json:test_reports/test_report.json
+        run: flutter test --coverage --file-reporter json:test_results.json
       - name: Publish test results
-        uses: dorny/test-reporter@v1.6.0
+        uses: dorny/test-reporter@v1.7.0
+        if: success() || failure()
         with:
-          name: "Unit tests report"
-          path: test_reports/test_report.json
-          reporter: "flutter-json"
-          max-annotations: "50"
+          name: Unit tests report
+          path: test_results.json
+          reporter: flutter-json
+          max-annotations: 50
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish coverage report
         if: github.event_name == 'pull_request'
