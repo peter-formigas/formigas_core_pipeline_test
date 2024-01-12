@@ -14,6 +14,7 @@ env:
 
 jobs:
   validate:
+    name: Validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -30,6 +31,7 @@ jobs:
         run: flutter analyze --fatal-infos --fatal-warnings
 
   determine-flavor:
+    name: Determine Flavor
     runs-on: ubuntu-latest
     outputs:
       flavor: ${{ steps.set-flavor.outputs.flavor }}
@@ -66,6 +68,7 @@ jobs:
           flavor: ${{ needs.determine-flavor.outputs.flavor }}
 
   test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
