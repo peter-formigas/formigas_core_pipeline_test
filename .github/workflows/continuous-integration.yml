@@ -52,6 +52,7 @@ jobs:
             platform: ios
     runs-on: ${{ matrix.runs-on }}
     steps:
+      - uses: actions/checkout@v3
       - name: Build ${{ matrix.platform }} ${{ needs.determine-flavor.outputs.flavor }}
         uses: ./.github/actions/build_app
         with:
