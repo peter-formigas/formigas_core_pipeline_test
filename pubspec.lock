@@ -267,11 +267,9 @@ packages:
   formigas_mvc:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: "9209e73994701bc5aaa36f6582e6a9958274074b"
-      url: "git@git.dev.formigas.de:framework/lib-formigas-mvc.git"
-    source: git
+      path: lib-formigas-mvc
+      relative: true
+    source: path
     version: "0.0.1"
   freezed:
     dependency: "direct dev"
