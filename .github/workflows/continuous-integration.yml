@@ -78,22 +78,4 @@ jobs:
       - name: Build runner
         run: dart run build_runner build --delete-conflicting-outputs
       - name: Test
-        run: flutter test --machine --coverage | tee >( $HOME/.pub-cache/bin/tojunit > test-report-app.xml )
-      - name: Convert to Cobertura
-        run: |
-          flutter pub global activate cobertura
-          $HOME/.pub-cache/bin/cobertura convert -i coverage/lcov.info -o coverage/cobertura.xml -p pubspec.yaml
-      - name: Generate Coverage Report
-        run: |
-          sudo apt update && sudo apt install -y lcov
-          genhtml -o docs/coverage/ --no-function-coverage --no-branch-coverage coverage/lcov.info
-          lcov --list coverage/lcov.info
-      - name: Upload Coverage Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: Coverage Report
-          path: |
-            coverage/lcov.info
-            coverage/cobertura.xml
-            docs/coverage/
-          retention-days: 7
+        run: flutter test --coverage --reporter github
