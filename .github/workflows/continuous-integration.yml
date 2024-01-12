@@ -70,13 +70,33 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Setup
+      - name: Install lcov
         run: |
-          flutter pub global activate junitreport
-          set -o pipefail
+          sudo apt-get update
+          sudo apt-get -y install lcov
       - name: Clean
         run: flutter clean
       - name: Build runner
         run: dart run build_runner build --delete-conflicting-outputs
-      - name: Test
-        run: flutter test --coverage --reporter github
+      - name: Setup Melos
+        uses: bluefireteam/melos-action@v2
+      - name: Install dependencies for all packages
+        run: melos build:pub_get:all
+      - name: Run tests with coverage
+        run: melos test:with-lcov-coverage:all
+      - name: Publish test results
+        id: compute_test_results
+        uses: dorny/test-reporter@v1.6.0
+        with:
+          name: "Unit tests report"
+          path: test_reports/*_test_report.json
+          reporter: "flutter-json"
+          max-annotations: "50"
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish coverage report
+        if: github.event_name == 'pull_request'
+        uses: romeovs/lcov-reporter-action@v0.3.1
+        with:
+          lcov-file: coverage_report/cleaned_combined_lcov.info
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Coverage Report"
