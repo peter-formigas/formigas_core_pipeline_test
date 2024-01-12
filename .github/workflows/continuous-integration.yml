@@ -18,11 +18,12 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Validate
-        run: |
-          dart format -o none --set-exit-if-changed lib/ test/
-          dart run build_runner build --delete-conflicting-outputs
-          flutter analyze --fatal-infos --fatal-warnings
+      - name: Format
+        run: dart format -o none --set-exit-if-changed lib/ test/
+      - name: Build runner
+        run: dart run build_runner build --delete-conflicting-outputs
+      - name: Analyze
+        run: flutter analyze --fatal-infos --fatal-warnings
 
   determine-flavor:
     runs-on: ubuntu-latest
@@ -68,15 +69,22 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Test
+      - name: Setup
         run: |
           flutter pub global activate junitreport
           set -o pipefail
-          flutter clean
-          dart run build_runner build --delete-conflicting-outputs
-          flutter test --machine --coverage | tee >( $HOME/.pub-cache/bin/tojunit > test-report-app.xml )
+      - name: Clean
+        run: flutter clean
+      - name: Build runner
+        run: dart run build_runner build --delete-conflicting-outputs
+      - name: Test
+        run: flutter test --machine --coverage | tee >( $HOME/.pub-cache/bin/tojunit > test-report-app.xml )
+      - name: Convert to Cobertura
+        run: |
           flutter pub global activate cobertura
           $HOME/.pub-cache/bin/cobertura convert -i coverage/lcov.info -o coverage/cobertura.xml -p pubspec.yaml
+      - name: Generate Coverage Report
+        run: |
           sudo apt update && sudo apt install -y lcov
           genhtml -o docs/coverage/ --no-function-coverage --no-branch-coverage coverage/lcov.info
           lcov --list coverage/lcov.info
