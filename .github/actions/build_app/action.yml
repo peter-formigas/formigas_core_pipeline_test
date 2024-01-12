@@ -1,10 +1,10 @@
-name: Build
+name: Build App
+description: Builds the app for the specified platform and flavor
 
 inputs:
   platform:
     required: true
-    description: "Platform to build"
-    options: ["android", "ios"]
+    description: "Platform to build (android or ios))"
   flavor:
     required: true
     description: "Build flavor"
@@ -22,6 +22,7 @@ runs:
         flutter-version: ${{ input.flutter_version }}
         cache: true
     - name: Build
+      shell: bash
       run: |
         flutter clean
         dart run build_runner build --delete-conflicting-outputs
