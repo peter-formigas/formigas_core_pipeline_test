@@ -87,6 +87,8 @@ jobs:
         run: dart run build_runner build --delete-conflicting-outputs
       - name: Run tests
         run: flutter test --coverage --file-reporter json:test_results.json
+      - name: Remove generated files from coverage
+        run: lcov --remove coverage/lcov.info '**.g.dart'  -o coverage/clean_lcov.info
       - name: Publish test results
         uses: dorny/test-reporter@v1.7.0
         if: success() || failure()
@@ -97,9 +99,11 @@ jobs:
           max-annotations: 50
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish coverage report
-        if: github.event_name == 'pull_request'
-        uses: romeovs/lcov-reporter-action@v0.3.1
+        uses: zgosalvez/github-actions-report-lcov@v3
         with:
-          lcov-file: coverage/lcov.info
+          coverage-files: coverage/clean_lcov.info
+          minimum-coverage: 50
+          artifact-name: code-coverage-report
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          title: "Coverage Report"
+          update-comment: true
+          additional-message: Remember that you want to write high quality tests, so you can sleep well at night!
