@@ -12,9 +12,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   formigas_mvc:
-    git:
-      url: git@git.dev.formigas.de:framework/lib-formigas-mvc.git
-      ref: develop
+    path: lib-formigas-mvc
   freezed_annotation: ^2.4.1
   intl: ^0.18.1
   json_annotation: ^4.8.1
