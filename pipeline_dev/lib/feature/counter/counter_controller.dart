@@ -1,5 +1,5 @@
-import 'package:pipeline_dev/feature/counter/counter_model.dart';
 import 'package:formigas_mvc/formigas_mvc.dart';
+import 'package:pipeline_dev/feature/counter/counter_model.dart';
 
 abstract class CounterController extends MVController<CounterModel> {
   CounterController(super.initialModel);

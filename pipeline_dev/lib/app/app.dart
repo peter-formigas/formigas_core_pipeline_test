@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:pipeline_dev/common/custom_themes.dart';
 import 'package:pipeline_dev/feature/counter/counter_controller.dart';
 import 'package:pipeline_dev/feature/counter/counter_view.dart';
-import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
