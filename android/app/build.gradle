@@ -32,7 +32,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    namespace "de.formigas.formigas_core_pipeline_test"
+    namespace "formigas.de.pipeline_dev"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -51,7 +51,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "de.formigas.formigas_core_pipeline_test"
+        applicationId "formigas.de.pipeline_dev"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
@@ -83,17 +83,17 @@ android {
         production {
             dimension "default"
             applicationIdSuffix ""
-            manifestPlaceholders = [appName: "Formigas Core Pipeline Test"]
+            manifestPlaceholders = [appName: "Pipeline Dev"]
         }
         staging {
             dimension "default"
             applicationIdSuffix ".stg"
-            manifestPlaceholders = [appName: "[STG] Formigas Core Pipeline Test"]
+            manifestPlaceholders = [appName: "[STG] Pipeline Dev"]
         }
         development {
             dimension "default"
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "[DEV] Formigas Core Pipeline Test"]
+            manifestPlaceholders = [appName: "[DEV] Pipeline Dev"]
         }
     }
 

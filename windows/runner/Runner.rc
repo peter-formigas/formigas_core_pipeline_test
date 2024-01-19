@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "de.formigas.formigas-core-pipeline-test" "\0"
-            VALUE "FileDescription", "formigas_core_pipeline_test" "\0"
+            VALUE "CompanyName", "formigas.de.pipeline-dev" "\0"
+            VALUE "FileDescription", "pipeline_dev" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "formigas_core_pipeline_test" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 de.formigas.formigas-core-pipeline-test. All rights reserved." "\0"
-            VALUE "OriginalFilename", "formigas_core_pipeline_test.exe" "\0"
-            VALUE "ProductName", "Formigas Core Pipeline Test" "\0"
+            VALUE "InternalName", "pipeline_dev" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2022 formigas.de.pipeline-dev. All rights reserved." "\0"
+            VALUE "OriginalFilename", "pipeline_dev.exe" "\0"
+            VALUE "ProductName", "Pipeline Dev" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

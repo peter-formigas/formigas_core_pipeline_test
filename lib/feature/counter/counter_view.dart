@@ -1,19 +1,16 @@
+import 'package:pipeline_dev/feature/counter/counter_controller.dart';
+import 'package:pipeline_dev/feature/counter/counter_model.dart';
 import 'package:flutter/material.dart';
-import 'package:formigas_core_pipeline_test/feature/counter/counter_controller.dart';
-import 'package:formigas_core_pipeline_test/feature/counter/counter_model.dart';
+import 'package:formigas_mvc/formigas_mvc.dart';
 
-class CounterView extends StatelessWidget {
+class CounterView extends MViewC<CounterController, CounterModel> {
   const CounterView({
-    required CounterController controller,
-    required CounterModel model,
+    required super.controller,
     super.key,
-  })  : _controller = controller,
-        _model = model;
-  final CounterController _controller;
-  final CounterModel _model;
+  });
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context, CounterModel model) => Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: const Text('Flutter Demo Home Page'),
@@ -26,14 +23,14 @@ class CounterView extends StatelessWidget {
                 'You have pushed the button this many times:',
               ),
               Text(
-                '${_model.count}',
+                '${model.count}',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: _controller.increment,
+          onPressed: controller.increment,
           tooltip: 'Increment',
           child: const Icon(Icons.add),
         ),

@@ -3,7 +3,7 @@ bricks:
     git:
       url: "git@git.dev.formigas.de:framework/bricks.git"
       path: core
-      ref: develop
+      ref: feature/add_github_ci
   formigas_feature:
     git:
       url: "git@git.dev.formigas.de:framework/bricks.git"

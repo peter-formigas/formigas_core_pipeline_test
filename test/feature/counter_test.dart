@@ -1,20 +1,17 @@
+import 'package:pipeline_dev/feature/counter/counter_controller.dart';
+import 'package:pipeline_dev/feature/counter/counter_model.dart';
+import 'package:pipeline_dev/feature/counter/counter_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:formigas_core_pipeline_test/feature/counter/counter_controller_implementation.dart';
-import 'package:formigas_core_pipeline_test/feature/counter/counter_model.dart';
-import 'package:formigas_core_pipeline_test/feature/counter/counter_view.dart';
 
 void main() {
   group('App', () {
-    final controller = CounterControllerImplementation();
     const model = CounterModel(count: 2);
+    final controller = CounterControllerImplementation()..model = model;
     testWidgets('renders Counter', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: CounterView(
-            controller: controller,
-            model: model,
-          ),
+          home: CounterView(controller: controller),
         ),
       );
       expect(
