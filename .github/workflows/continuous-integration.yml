@@ -82,7 +82,7 @@ jobs:
           export ANDROID_KEYSTORE_PATH=$KEYSTORE_FILENAME
           export ANDROID_KEYSTORE_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           export ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD }}
-          export ANDROID_KEYSTORE_ALIAS=${{ vars.ANDROID_KEY_ALIAS }}
+          export ANDROID_KEYSTORE_ALIAS=${{ vars.ANDROID_KEYSTORE_ALIAS }}
           echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > ./android/app/$KEYSTORE_FILENAME
           echo $ANDROID_KEYSTORE_PATH
       - name: Clean
