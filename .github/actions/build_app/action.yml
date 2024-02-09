@@ -21,6 +21,16 @@ runs:
       with:
         flutter-version: ${{ inputs.flutter_version }}
         cache: true
+    - name: Setup android
+      shell: bash
+      if: ${{ inputs.platform }} == 'android'
+      run: |
+        export KEYSTORE_FILENAME=upload-keystore.jks
+        export ANDROID_KEYSTORE_PATH=$KEYSTORE_FILENAME
+        export ANDROID_KEYSTORE_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        export ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD }}
+        export ANDROID_KEY_ALIAS=${{ vars.ANDROID_KEY_ALIAS }}
+        echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > ./android/app/$KEYSTORE_FILENAME
     - name: Clean
       shell: bash
       run: flutter clean
@@ -36,4 +46,4 @@ runs:
         elif [ "${{ inputs.platform }}" = "ios" ]; then
           build_command="ios --no-codesign"
         fi
-        flutter build $build_command --debug --flavor ${{ inputs.flavor }} -t lib/main_${{ inputs.flavor }}.dart
+        flutter build $build_command --release --flavor ${{ inputs.flavor }} -t lib/main_${{ inputs.flavor }}.dart
