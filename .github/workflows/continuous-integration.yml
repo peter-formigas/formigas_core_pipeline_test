@@ -69,6 +69,8 @@ jobs:
     name: Build Android ${{ needs.determine-flavor.outputs.flavor }}
     needs: determine-flavor
     runs-on: ubuntu-latest
+    env:
+      KEYSTORE_FILENAME: upload-keystore.jks
     steps:
       - uses: actions/checkout@v4
       - name: Setup Flutter
@@ -77,19 +79,18 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
       - name: Setup Keystore
-        run: |
-          export KEYSTORE_FILENAME=upload-keystore.jks
-          export ANDROID_KEYSTORE_PATH=$KEYSTORE_FILENAME
-          export ANDROID_KEYSTORE_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          export ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD }}
-          export ANDROID_KEYSTORE_ALIAS=${{ vars.ANDROID_KEYSTORE_ALIAS }}
-          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > ./android/app/$KEYSTORE_FILENAME
+        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > ./android/app/${{ env.KEYSTORE_FILENAME }}
       - name: Clean
         run: flutter clean
       - name: Build runner
         run: dart run build_runner build --delete-conflicting-outputs
       - name: Build
         run: flutter build appbundle --release --flavor ${{ needs.determine-flavor.outputs.flavor }} -t lib/main_${{ needs.determine-flavor.outputs.flavor }}.dart
+        env:
+          ANDROID_KEYSTORE_PATH: ${{ env.KEYSTORE_FILENAME }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD }}
+          ANDROID_KEYSTORE_ALIAS: ${{ vars.ANDROID_KEYSTORE_ALIAS }}
 
   test:
     name: Test
