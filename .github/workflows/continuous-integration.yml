@@ -84,7 +84,6 @@ jobs:
           export ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD }}
           export ANDROID_KEYSTORE_ALIAS=${{ vars.ANDROID_KEYSTORE_ALIAS }}
           echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > ./android/app/$KEYSTORE_FILENAME
-          echo $ANDROID_KEYSTORE_PATH
       - name: Clean
         run: flutter clean
       - name: Build runner
