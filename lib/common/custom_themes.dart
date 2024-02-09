@@ -1,6 +1,6 @@
+import 'package:formigas_core_pipeline_test/common/color_scheme.dart';
+import 'package:formigas_core_pipeline_test/common/text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:pipeline_dev/common/color_scheme.dart';
-import 'package:pipeline_dev/common/text_style.dart';
 
 class CustomTheme {
   ThemeData get dark => ThemeData(

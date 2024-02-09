@@ -1,7 +1,7 @@
+import 'package:formigas_core_pipeline_test/feature/counter/counter_controller.dart';
+import 'package:formigas_core_pipeline_test/feature/counter/counter_model.dart';
 import 'package:flutter/material.dart';
 import 'package:formigas_mvc/formigas_mvc.dart';
-import 'package:pipeline_dev/feature/counter/counter_controller.dart';
-import 'package:pipeline_dev/feature/counter/counter_model.dart';
 
 class CounterView extends MViewC<CounterController, CounterModel> {
   const CounterView({

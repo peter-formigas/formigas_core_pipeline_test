@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(pipeline_dev LANGUAGES CXX)
+project(formigas_core_pipeline_test LANGUAGES CXX)
 
-set(BINARY_NAME "pipeline_dev")
+set(BINARY_NAME "formigas_core_pipeline_test")
 
 cmake_policy(SET CMP0063 NEW)
 

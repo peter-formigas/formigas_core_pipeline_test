@@ -1,6 +1,6 @@
+import 'package:formigas_core_pipeline_test/app/app.dart';
+import 'package:formigas_core_pipeline_test/feature/counter/counter_view.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pipeline_dev/app/app.dart';
-import 'package:pipeline_dev/feature/counter/counter_view.dart';
 
 void main() {
   group('App', () {

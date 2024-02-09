@@ -1,7 +1,7 @@
+import 'package:formigas_core_pipeline_test/common/custom_themes.dart';
+import 'package:formigas_core_pipeline_test/feature/counter/counter_controller.dart';
+import 'package:formigas_core_pipeline_test/feature/counter/counter_view.dart';
 import 'package:flutter/material.dart';
-import 'package:pipeline_dev/common/custom_themes.dart';
-import 'package:pipeline_dev/feature/counter/counter_controller.dart';
-import 'package:pipeline_dev/feature/counter/counter_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -9,7 +9,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'PipelineDev App',
+      title: 'FormigasCorePipelineTest App',
       theme: CustomTheme().light,
       darkTheme: CustomTheme().dark,
       home: CounterView(controller: CounterControllerImplementation()),

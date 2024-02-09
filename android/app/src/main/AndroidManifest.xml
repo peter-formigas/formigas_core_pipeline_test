@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="formigas.de.pipeline_dev">
+    package="formigas.de.formigas_core_pipeline_test">
    <application
         android:label="${appName}"
         android:name="${applicationName}"

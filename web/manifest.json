@@ -1,11 +1,11 @@
 {
-    "name": "Pipeline Dev",
-    "short_name": "Pipeline Dev",
+    "name": "Formigas Core Pipeline Test",
+    "short_name": "Formigas Core Pipeline Test",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "testing mvc feature",
+    "description": "testing github actions",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -1,5 +1,5 @@
-name: pipeline_dev
-description: testing mvc feature
+name: formigas_core_pipeline_test
+description: testing github actions
 version: 1.0.0+1
 publish_to: none
 
